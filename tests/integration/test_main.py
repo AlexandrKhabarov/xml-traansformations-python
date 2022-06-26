@@ -27,7 +27,7 @@ def test_main(
             + '<some_attr>3</some_attr>'
             + '</some>'
             + '<another_attr>1</another_attr>'
-            + '</attr>'
+            + '</attr>',
         ],
     }).write.parquet(input_path)
 
@@ -41,7 +41,7 @@ def test_main(
             json.dumps({
                 'some_attrs': 'attr/some/some_attr',
                 'another_attr': 'attr/another_attr',
-            })
+            }),
         ],
     )
 
