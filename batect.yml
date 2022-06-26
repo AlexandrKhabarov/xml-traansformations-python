@@ -1,0 +1,32 @@
+containers:
+  pyspark:
+    build_directory: .
+    volumes:
+      - local: .
+        container: /app
+        options: cached
+      - type: cache
+        name: poetry-dependencies
+        container: /root/.cache/pypoetry/virtualenvs
+
+tasks:
+  test:
+    description: Unit/Integration tests
+    group: Test
+    run:
+      container: pyspark
+      entrypoint: scripts/test.sh
+
+  lint:
+    description: Lint check
+    group: Test
+    run:
+      container: pyspark
+      entrypoint: scripts/lint.sh
+
+  run:
+    description: Run spark job
+    group: Run
+    run:
+      container: pyspark
+      entrypoint: scripts/run.sh
